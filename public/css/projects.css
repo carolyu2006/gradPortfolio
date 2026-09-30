@@ -46,6 +46,7 @@ section {
     /* background-color: red; */
     padding: var(--margin-y) var(--margin-x);
     box-sizing: border-box;
+    will-change: transform;
 }
 
 .sidebar-content {
@@ -98,9 +99,20 @@ section {
     margin-left: 10px;
 }
 
-.sidebar-content a:hover::before {
+.sidebar-content a:hover::before,
+.sidebar-content a.is-active::before {
     opacity: 1;
     transform: translateX(0px);
+}
+
+/* Current section: the others step back so the dot is not the only cue. */
+.sidebar-content-item a {
+    opacity: 0.5;
+}
+
+.sidebar-content-item a:hover,
+.sidebar-content-item a.is-active {
+    opacity: 1;
 }
 
 .sidebar .header-title {

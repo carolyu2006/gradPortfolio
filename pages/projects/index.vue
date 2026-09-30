@@ -210,8 +210,7 @@ useHead({
     { rel: 'stylesheet', href: '/css/projects.css' }
   ],
   script: [
-    { src: '/js/script.js', body: true },
-    { src: '/js/projects.js', body: true }
+    { src: '/js/script.js', body: true }
   ]
 });
 </script>

@@ -184,10 +184,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         item.addEventListener('click', e => {
             e.preventDefault();
-            const top = section.getBoundingClientRect().top + window.scrollY - 100;
-            window.scrollTo({ top, behavior: 'smooth' });
+            scrollToSection(section);
         });
     });
+
+    // These pages are media-heavy, so a section can move while a long smooth
+    // scroll is still travelling and the page lands short of the heading.
+    // Re-measure once the scroll stops and close the gap, unless the reader has
+    // taken over the scroll in the meantime.
+    const SECTION_OFFSET = 100;
+    let scrollToken = 0;
+
+    function scrollToSection(section) {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targetTop = () => Math.max(section.getBoundingClientRect().top + window.scrollY - SECTION_OFFSET, 0);
+        window.scrollTo({ top: targetTop(), behavior: reduced ? 'auto' : 'smooth' });
+
+        const token = ++scrollToken;
+        const cancel = () => { scrollToken++; };
+        const events = ['wheel', 'touchstart', 'keydown'];
+        events.forEach(type => window.addEventListener(type, cancel, { once: true, passive: true }));
+
+        const finish = () => {
+            events.forEach(type => window.removeEventListener(type, cancel));
+            if (token !== scrollToken) return;
+            const drift = section.getBoundingClientRect().top - SECTION_OFFSET;
+            if (Math.abs(drift) > 2) window.scrollTo({ top: targetTop(), behavior: 'auto' });
+            updateActiveSection();
+        };
+
+        const timer = setTimeout(finish, 900);
+        if ('onscrollend' in window) {
+            window.addEventListener('scrollend', () => { clearTimeout(timer); finish(); }, { once: true });
+        }
+    }
 
     // Position absolutely to start, aligned with the h1
     nav.style.position = 'absolute';
@@ -222,8 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setActive(idx);
     }
 
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
-    window.addEventListener('resize', updateActiveSection);
     updateActiveSection();
 
     const h1 = document.querySelector('.content h1');
@@ -268,8 +296,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.addEventListener('scroll', updateSidenavPosition, { passive: true });
-    window.addEventListener('resize', updateSidenavPosition, { passive: true });
+    function refresh() {
+        updateActiveSection();
+        updateSidenavPosition();
+    }
+
+    window.addEventListener('scroll', refresh, { passive: true });
+    window.addEventListener('resize', refresh, { passive: true });
+
+    // The covers and screenshots on these pages finish loading after
+    // DOMContentLoaded and push the h1 down with them. Without this the nav
+    // keeps the position it measured against a half-laid-out page and only
+    // snaps into place once the reader happens to scroll.
+    window.addEventListener('load', refresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+    if (window.ResizeObserver) new ResizeObserver(refresh).observe(document.body);
+
     updateSidenavPosition();
 });
 
