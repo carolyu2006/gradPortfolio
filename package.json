@@ -1,5 +1,5 @@
 {
-  "name": "2025portfolio",
+  "name": "grad-portfolio",
   "version": "1.0.0",
   "scripts": {
     "dev": "nuxt dev",
@@ -9,7 +9,6 @@
     "start": "nuxt preview"
   },
   "dependencies": {
-    "gsap": "^3.15.0",
     "nuxt": "^4.4.8"
   }
 }

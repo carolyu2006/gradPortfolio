@@ -8,6 +8,7 @@
                     <!-- <a href="/projects">PROJECTS</a> -->
                     <a href="/play">PLAYGROUND</a>
                     <a href="/about">ABOUT</a>
+                    <a href="/cv">CV</a>
                 </div>
                 <div>
                     <div class="footer-social-icons">
@@ -48,7 +49,7 @@
             </div>
             <div class="footer-content-right">
                 <p class="footer-content-right-title">CAROL YU</p>
-                <p class="footer-content-right-description">I'm Carol, a <strong>Product Designer</strong> crafting engaging experiences that resonate with users.</p>
+                <p class="footer-content-right-description">I'm Carol, a <strong>designer and creative technologist</strong> studying how AI and play can make everyday tools feel more human.</p>
             </div>
 
         </div>
@@ -65,6 +66,7 @@
                         <a href="/">WORK</a>
                         <a href="/play">PLAYGROUND</a>
                         <a href="/about">ABOUT</a>
+                        <a href="/cv">CV</a>
                     </div>
                     <img class="footer-phone-img" src="/assets/icons/yu.svg" alt="Carol">
                 </div>
@@ -92,6 +94,6 @@
         </div>
 
     </div>
-    <p class="footer-copyright">© 2025 Carol Yu. All rights reserved.</p>
+    <p class="footer-copyright">© 2026 Carol Yu. All rights reserved.</p>
 </footer>
 </template>

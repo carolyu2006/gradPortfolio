@@ -1,17 +1,21 @@
 <template>
 <AppHeader />
-        <div class="main-content">
-            <div class="play-header">
-                <h1>Playground</h1>
-                <div class="play-filter">
-                <button class="filter-btn active" data-filter="all">all</button>
-                <button class="filter-btn" data-filter="code">code</button>
-                <button class="filter-btn" data-filter="design">design</button>
-                <button class="filter-btn" data-filter="game">game</button>
-                <button class="filter-btn" data-filter="xr">xr</button>
-                <button class="filter-btn" data-filter="art">art</button>
-                </div>
-            </div>
+<main class="page play">
+    <aside class="page-side">
+        <nav class="side-nav play-filter" aria-label="Filter by type">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="code">Code</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+            <button class="filter-btn" data-filter="game">Games</button>
+            <button class="filter-btn" data-filter="xr">XR</button>
+            <button class="filter-btn" data-filter="art">Art</button>
+        </nav>
+    </aside>
+        <div class="page-main play-main">
+            <h1 class="page-title">
+                <span class="page-kicker">Playground</span>
+                Experiments, games, and art.
+            </h1>
             <!-- Featured Game Spotlight (visible when "game" filter active) -->
             <div class="play-featured hidden" id="play-featured">
                 <div class="play-featured-left">
@@ -297,12 +301,13 @@
                 </div> -->
             </div>
         </div>
+</main>
         <AppFooter />
 </template>
 
 <script setup>
 useHead({
-  title: 'Playground',
+  title: 'Playground — Carol Yu',
   link: [
     { rel: 'icon', type: 'image/png', href: '/assets/images/main/logo.svg' },
     { rel: 'stylesheet', href: '/css/styles.css' },

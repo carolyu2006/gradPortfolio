@@ -1,0 +1,208 @@
+/* CV page, laid out like a project case study (see project.css): one column of
+   text in the centre, section links on the left, and each entry's dates in the
+   right margin, set like a figure caption. Print-friendly. */
+
+.cv {
+    /* The same measure and caption column as the case studies. */
+    --measure: 760px;
+    --caption-width: 200px;
+    --caption-gap: 48px;
+    --text-width: min(var(--measure), calc(100% - var(--caption-width) - var(--caption-gap)));
+}
+
+.cv .cv-main {
+    display: block;
+}
+
+.cv-header > *,
+.cv-section > :not(.cv-entry) {
+    max-width: var(--text-width);
+}
+
+.cv-section {
+    margin-top: 96px;
+    scroll-margin-top: calc(var(--header-height) + 32px);
+}
+
+/* ---------- Header ---------- */
+
+.cv-kicker {
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: var(--color-gray);
+}
+
+.cv-header h1 {
+    margin: 0 0 20px;
+}
+
+.cv .lead {
+    font-size: 20px;
+    line-height: 1.5;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.cv-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 20px;
+}
+
+.cv-contact a,
+.cv-body h3 a {
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color .15s ease;
+}
+
+.cv-contact a:hover,
+.cv-body h3 a:hover {
+    color: var(--color-accent);
+}
+
+.cv-actions {
+    margin-top: 28px;
+}
+
+/* ---------- Sections and entries ---------- */
+
+.cv-section h2 {
+    margin: 0 0 24px;
+    font-size: 45px;
+    line-height: 1.05;
+}
+
+.cv-section p,
+.cv-section li {
+    font-size: 18px;
+    line-height: 1.67;
+}
+
+.cv-section > p {
+    margin: 0 0 16px;
+}
+
+/* An entry: its text in the column, its dates in the right margin. */
+.cv-entry {
+    display: grid;
+    grid-template-columns: var(--text-width) minmax(0, 1fr);
+    column-gap: var(--caption-gap);
+    align-items: start;
+    margin-top: 32px;
+}
+
+.cv-section h2 + .cv-entry {
+    margin-top: 0;
+}
+
+.cv-body {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.cv-body h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.cv-subtitle {
+    margin: 0;
+    color: var(--color-gray);
+}
+
+.cv-body > p {
+    margin: 0;
+}
+
+.cv-body ul {
+    margin: 8px 0 0;
+    padding-left: 22px;
+}
+
+.cv-body li {
+    margin-bottom: 6px;
+}
+
+/* The dates: small gray italic text with a thin vertical line on its left,
+   level with the entry's title. */
+.cv-section .cv-date {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    margin: 4px 0 0;
+    padding-left: 12px;
+    border-left: 1px solid var(--color-gray-light);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-gray);
+}
+
+/* ---------- Narrower screens: dates above their entry ---------- */
+
+@media (max-width: 1180px) {
+    .cv {
+        --text-width: min(var(--measure), 100%);
+    }
+
+    .cv-entry {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cv-section .cv-date {
+        order: -1;
+        align-self: flex-start;
+        margin: 0 0 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cv-section {
+        margin-top: 72px;
+    }
+
+    .cv-section h2 {
+        font-size: 34px;
+    }
+
+    .cv-section p,
+    .cv-section li {
+        font-size: 17px;
+    }
+}
+
+@media print {
+    .site-header,
+    footer,
+    .page-side,
+    .cv-actions {
+        display: none !important;
+    }
+
+    .page {
+        display: block;
+        padding: 0;
+    }
+
+    .cv-section {
+        margin-top: 32px;
+    }
+
+    .cv-entry {
+        break-inside: avoid;
+        margin-top: 16px;
+    }
+
+    .cv-body h3 a,
+    .cv-contact a {
+        text-decoration: none;
+    }
+}

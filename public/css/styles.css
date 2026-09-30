@@ -1,3 +1,12 @@
+/* Shared foundation for every page: tokens, type, buttons, the site header and
+   footer, and the two-column page grid (section links on the left, content on
+   the right). The look is Swiss/editorial: a neo-grotesk sans in near-black on
+   white, generous white space, rectangular outline buttons, and pink as the
+   single accent. */
+
+/* The original display faces. The site's text uses --font-sans; these are kept
+   for the pieces that stay in the original style: the home hero, the Contact
+   trigger and its dropdown, and the footer. */
 @font-face {
     font-family: 'ArchivoBlack';
     src: url('../assets/fonts/ArchivoBlack.ttf') format('truetype');
@@ -16,15 +25,22 @@
 }
 
 :root {
+    --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
     --color-background: #fff;
-    --color-foreground: #2C2C2C;
-    --color-black: #2C2C2C;
+    --color-foreground: #201f20;
+    --color-black: #201f20;
     --color-white: #fff;
 
+    --color-gray: #6b6a6b;
+    --color-gray-light: #a8a7a8;
+    --color-line: #e2e1e2;
+    /* Neutral backdrop behind transparent media and diagrams. */
+    --color-surface: #f4f4f4;
 
-    --color-gray: #656565;
-    --color-gray-light: #979797;
-
+    /* Pink is the accent. The soft pinks are for fills and rules; text in the
+       accent uses --color-accent, which is dark enough to read on white. */
+    --color-accent: #cf3f63;
     --color-primary-dark: #e2737c;
     --color-primary-dark2: #f29aa1;
     --color-primary: #FFB3B9;
@@ -39,7 +55,7 @@
     --color-blue: #86BBE7;
     --color-purple: #B185D0;
 
-    --margin-x: 30px;
+    --margin-x: 64px;
     --margin-y: 30px;
 
     --padding-480: 20px;
@@ -47,518 +63,335 @@
     --padding-1024: 80px;
     --padding-full: 160px;
 
-    .dark {
-        display: none;
-    }
-
-    .light {
-        display: block;
-    }
+    --header-height: 88px;
+    --side-width: 240px;
+    --page-gap: 64px;
 }
 
-/* 
-@media (prefers-color-scheme: dark) {
+.dark {
+    display: none;
+}
+
+.light {
+    display: block;
+}
+
+@media (max-width: 1024px) {
     :root {
-        --color-background: #2C2C2C;
-        --color-foreground: #fff;
-        --color-gray: #848484;
+        --margin-x: 40px;
+        --side-width: 200px;
+        --page-gap: 40px;
     }
-
-    .dark {
-        display: block;
-    }
-
-    .light {
-        display: none;
-    }
-} */
+}
 
 @media (max-width: 768px) {
     :root {
         --margin-x: 20px;
         --margin-y: 20px;
-    }
-
-    .main-content {
-        margin-top: 120px;
-    }
-
-    h1 {
-        font-size: 36px;
-    }
-
-    h2 {
-        font-size: 36px;
+        --header-height: 64px;
     }
 }
 
-@media (max-width: 560px) {
-    .main-content {
-        margin-top: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-title {
-        font-size: 16px;
-    }
-
-    .menu-dropdown {
-        top: 60px;
-        right: var(--margin-x);
-        width: calc(100vw - 2 * var(--margin-x));
-    }
-}
+/* ---------- Base ---------- */
 
 html {
     background-color: var(--color-background);
-    /* `hidden` turns <html> into a scroll container, which makes iOS momentum
-       scrolling and sticky positioning misbehave. `clip` clips the same overflow
-       without that side effect; the `hidden` above is the fallback. */
+    /* `clip`, not `hidden`: hidden turns <html> into a scroll container, which
+       breaks position: sticky and iOS momentum scrolling. */
     overflow-x: hidden;
     overflow-x: clip;
 }
 
 body {
-    padding: 0;
     margin: 0;
-    /* margin-top: 190px; */
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    /* clip, not hidden: hidden turns body into a scroll container and breaks
-       position: sticky inside the page. */
-    overflow-x: clip;
-    max-width: 100%;
-}
-
-.main-content {
-    background-color: transparent;
-    color: var(--color-foreground);
-    font-family: 'Gabarito', sans-serif;
-    margin: var(--margin-y) var(--margin-x);
-    margin-top: 180px;
     padding: 0;
-    min-height: 80vh;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-header h1 {
-    font-family: 'GajrajOne', sans-serif;
-    font-size: 54px;
-    margin: 10px 0;
-    background-color: transparent;
-    letter-spacing: 2px;
-    color: var(--color-foreground);
-
-}
-
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1100;
-    overflow: visible;
-    --header-bg-opacity: 0;
-}
-
-.main-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    max-width: 100%;
+    overflow-x: clip;
     background-color: var(--color-background);
-    opacity: var(--header-bg-opacity);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Dark-hero variant: nav starts white over the dark top section, then fades to
-   the normal dark text in step with the white background fading in. */
-.main-header--hero-dark {
-    --header-foreground: color-mix(in srgb,
-        var(--color-foreground) calc(var(--header-bg-opacity) * 100%),
-        var(--color-white));
-}
-
-.main-header--hero-dark .header-title,
-.main-header--hero-dark .menu-button h1,
-.main-header--hero-dark .header-middle a {
-    color: var(--header-foreground);
-}
-
-.main-header--hero-dark .header-middle a:hover,
-.main-header--hero-dark .header-middle a.active {
-    border-bottom-color: var(--header-foreground);
-}
-
-.main-header--hero-dark .menu-button:hover h1 {
-    color: var(--header-foreground);
-}
-
-@media (min-width: 769px) {
-    /* Cross-fade the white logo/menu icon into the dark ones. */
-    .main-header--hero-dark .header-left .header-link {
-        position: relative;
-    }
-
-    .main-header--hero-dark .logo.light,
-    .main-header--hero-dark .menu-button-icon.light {
-        opacity: var(--header-bg-opacity);
-    }
-
-    .main-header--hero-dark .logo.dark,
-    .main-header--hero-dark .menu-button-icon.dark {
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: calc(1 - var(--header-bg-opacity));
-        pointer-events: none;
-    }
-
-    .main-header--hero-dark .logo.dark {
-        left: 0;
-    }
-
-    .main-header--hero-dark .menu-button-icon.dark {
-        right: 0;
-    }
-}
-
-a {
-    font-family: 'Gabarito', sans-serif;
-    text-decoration: none;
     color: var(--color-foreground);
+    font-family: var(--font-sans);
     font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-    /* width: auto;
-    flex: 0 0 auto;
-    align-self: flex-start; */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+a,
+button,
+input {
+    font-family: var(--font-sans);
 }
 
 h1 {
-    font-family: 'ArchivoBlack', sans-serif;
-    font-size: 54px;
-    margin: 10px 0;
-    background-color: transparent;
-    letter-spacing: 0px;
+    font-size: 45px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
     color: var(--color-foreground);
-
 }
 
 h2 {
-    font-family: 'ArchivoBlack', sans-serif;
-    font-size: 54px;
-    margin: 0;
-    margin-bottom: 5px;
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
     color: var(--color-foreground);
-
 }
 
 h3 {
-    font-family: 'Gabarito', sans-serif;
     font-size: 20px;
+    line-height: 1.35;
     font-weight: 400;
-    margin: 0;
-    margin-bottom: 15px;
+    margin: 0 0 12px;
     color: var(--color-foreground);
 }
 
 h4 {
-    font-family: 'GajrajOne', sans-serif;
-    font-size: 18px;
-    color: var(--color-primary);
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     margin: 0;
-    letter-spacing: 2px;
+    color: var(--color-gray);
 }
 
-p {
-    margin: 0;
-    font-size: 16px;
-    color: var(--color-foreground);
-    font-family: 'Gabarito', sans-serif;
-    line-height: 1.2;
-    /* margin-bottom: 25px; */
-}
-
+p,
 li {
     margin: 0;
     font-size: 16px;
+    line-height: 1.6;
     color: var(--color-foreground);
-    font-family: 'Gabarito', sans-serif;
-    line-height: 1.2;
-    /* margin-bottom: 25px; */
 }
 
-section {
-    background-color: transparent;
+a {
+    color: var(--color-foreground);
+    text-decoration: none;
 }
 
-button {
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    margin: 0px;
-    font-size: 16px;
-    font-family: 'Gabarito', sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all .2s ease-in-out;
-    border: 2px solid var(--color-foreground);
-    width: auto;
+strong,
+b {
+    font-weight: 700;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+/* Rectangular outline buttons with a bold label. The same look on a link uses
+   the .btn class. */
+button,
+.btn {
     display: inline-block;
     flex: 0 0 auto;
     align-self: flex-start;
-}
-
-button:hover {
-    background-color: var(--color-background);
+    width: auto;
+    margin: 0;
+    padding: 10px 16px;
+    border: 2px solid var(--color-foreground);
+    background-color: transparent;
     color: var(--color-foreground);
-}
-
-
-.leaf {
-    z-index: -50;
-    position: absolute;
-    background-image: url('../assets/images/main/lotus-leaf.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    transform-origin: center center;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: calc(var(--margin-y) - 8px) var(--margin-x) 18px var(--margin-x);
-}
-
-.header-middle {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.header-middle a {
-    display: inline-block;
-    position: relative;
-    padding-bottom: 2px;
-    font-size: 14px;
-    font-family: 'Gabarito', sans-serif;
-    border-bottom: 2px solid transparent;
-
-}
-
-.header-middle a:hover,
-.header-middle a.active {
-    border-bottom: 2px solid var(--color-foreground);
-}
-
-.nav-play-hint {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 50%;
-    z-index: 2;
-    width: 180px;
-    height: 108px;
-    color: var(--color-foreground);
-    font-family: 'Gabarito', sans-serif;
+    font-family: var(--font-sans);
     font-size: 16px;
-    font-weight: 500;
-    line-height: 1.15;
-    pointer-events: none;
-    opacity: 0;
-    /* The SVG's tip sits in its top-left, so a small left shift parks that
-       tip under PLAY while the note still runs out to the right. */
-    transform: translate(-10px, 8px);
-}
-
-.nav-play-hint.is-visible {
-    animation: nav-play-hint-enter 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.nav-play-hint__mark {
-    position: absolute;
-    left: 8px;
-    top: -5px;
-    width: 38px;
-    height: auto;
-    overflow: visible;
-}
-
-.nav-play-hint__mark path {
-    fill: none;
-    stroke: var(--color-primary);
-    stroke-width: 4px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-}
-
-.nav-play-hint.is-visible .nav-play-hint__line {
-    animation: nav-play-hint-draw 220ms ease-in-out 40ms forwards;
-}
-
-.nav-play-hint.is-visible .nav-play-hint__arrow {
-    animation: nav-play-hint-draw 90ms ease-in-out 240ms forwards;
-}
-
-.nav-play-hint__copy {
-    position: absolute;
-    /* Just past the arrow's tail, bottom-right of it. */
-    left: 30px;
-    top: 65px;
-    display: flex;
-    opacity: 0;
-    transform: translate(8px, 8px) rotate(-8deg);
-    transform-origin: left bottom;
-}
-
-.nav-play-hint.is-visible .nav-play-hint__copy {
-    animation: nav-play-hint-label 100ms ease-out 300ms forwards;
-}
-
-.nav-play-hint__label {
-    /* Narrow enough that "Check My Playground!" breaks over two lines. */
-    width: 104px;
-    flex: none;
-    font-size: 18px;
-}
-
-@keyframes nav-play-hint-enter {
-    0% {
-        opacity: 0;
-        transform: translate(-10px, 16px);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-10px, 8px);
-    }
-}
-
-@keyframes nav-play-hint-draw {
-    0% { stroke-dashoffset: 1; }
-    100% { stroke-dashoffset: 0; }
-}
-
-@keyframes nav-play-hint-label {
-    0% {
-        opacity: 0;
-        transform: translate(8px, 8px) rotate(-8deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(0, 0) rotate(-8deg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .nav-play-hint,
-    .nav-play-hint.is-visible,
-    .nav-play-hint.is-visible .nav-play-hint__line,
-    .nav-play-hint.is-visible .nav-play-hint__arrow,
-    .nav-play-hint.is-visible .nav-play-hint__copy {
-        animation: none;
-    }
-
-    .nav-play-hint.is-visible {
-        opacity: 1;
-        transform: translate(-10px, 8px);
-    }
-
-    .nav-play-hint.is-visible .nav-play-hint__copy {
-        opacity: 1;
-        transform: rotate(-8deg);
-    }
-
-    .nav-play-hint.is-visible .nav-play-hint__mark path {
-        stroke-dashoffset: 0;
-    }
-}
-
-
-.header-title {
-    font-family: 'ArchivoBlack', sans-serif;
-    font-size: 20px;
-    padding-top: 10px
-}
-
-.header-link {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 180px;
-}
-
-.header-right {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    z-index: 1002;
-}
-
-.menu-button::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%) scaleX(0);
-    transform-origin: right;
-    height: 27px;
-    width: 118px;
-    background-color: var(--color-primary);
-    transition: transform 0.3s ease;
-    padding: 20px 10px;
-    margin-right: -10px;
-    z-index: -10;
-}
-
-/* 
-.menu-button:hover::after {
-    transform: translateY(-50%) scaleX(1);
-} */
-
-.menu-button h1 {
-    transition: color 0.3s ease;
-    color: var(--color-foreground);
-}
-
-.menu-button:hover h1 {
-    color: var(--color-black);
-}
-
-.menu-button {
-    color: var(--color-foreground);
-    background-color: transparent;
-    border: none;
+    font-weight: 700;
+    line-height: 1.25;
+    text-transform: none;
+    letter-spacing: 0;
     cursor: pointer;
-    padding: 0px;
-    margin: 0px;
-    position: relative;
-    z-index: 1;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
 }
 
-.menu-button:hover {
-    background-color: transparent;
+button:hover,
+.btn:hover,
+button:focus-visible,
+.btn:focus-visible {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
 }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-background);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+}
+
+.site-header.is-scrolled {
+    border-bottom-color: var(--color-line);
+}
+
+.site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    height: var(--header-height);
+    padding: 0 var(--margin-x);
+}
+
+/* The logo: the pixel mark, then the name set as a small stacked block with
+   the current section in gray underneath. */
+.site-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-logo img {
+    width: 44px;
+    height: auto;
+}
+
+.site-logo-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: lowercase;
+}
+
+.site-logo-section {
+    color: var(--color-gray-light);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.site-nav > a {
+    padding: 4px 0;
+    color: var(--color-foreground);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.site-nav > a:hover,
+.site-nav > a.is-active {
+    color: var(--color-accent);
+}
+
+/* Contact links for the phone menu; on larger screens the hover dropdown
+   (below) does this job. */
+.site-nav-contacts {
+    display: none;
+}
+
+.site-menu-toggle {
+    display: none;
+    align-self: center;
+}
+
+/* Contact: set like the other nav links, with the original pink dropdown
+   (menu-dropdown, below) anchored to it. The dropdown's collapsed pink strip
+   is 131 x 67px at its top-right corner; the offsets centre that strip on the
+   word, and the word stays above it. */
+.site-nav-contact {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.site-nav .menu-button {
+    position: relative;
+    align-self: center;
+    z-index: 1002;
+    padding: 4px 0;
+    border: none;
+    background: none;
+    color: var(--color-foreground);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* The pink strip is the hover feedback, so the word stays dark on it. */
+.site-nav .menu-button:hover,
+.site-nav .menu-button:focus-visible {
+    background: none;
+    color: var(--color-foreground);
+}
+
+.site-nav-contact .menu-dropdown {
+    top: -20px;
+    right: -36px;
+}
+
+@media (max-width: 768px) {
+    .site-nav,
+    .site-nav-contact {
+        display: none;
+    }
+
+    .site-menu-toggle {
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .site-header.is-menu-open .site-nav {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 16px var(--margin-x) 24px;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .site-header.is-menu-open .site-nav > a {
+        font-size: 20px;
+    }
+
+    .site-header.is-menu-open .site-nav-contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--color-line);
+    }
+
+    .site-header.is-menu-open .site-nav-contacts a {
+        font-size: 16px;
+        font-weight: 700;
+    }
+}
+
+/* ---------- Contact hover dropdown (original style) ---------- */
+/* Opened on hover of the Contact nav link by script.js (.menu-button +
+   #menu-dropdown). */
 
 .menu-dropdown {
     position: absolute;
@@ -882,6 +715,130 @@ button:hover {
 
 
 
+
+
+.menu-dropdown,
+.menu-dropdown a {
+    font-family: 'Gabarito', sans-serif;
+    line-height: normal;
+}
+
+/* ---------- Page grid: section links on the left, content on the right ---------- */
+
+.page {
+    display: grid;
+    grid-template-columns: var(--side-width) minmax(0, 1fr);
+    gap: var(--page-gap);
+    box-sizing: border-box;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 72px var(--margin-x) 20px;
+}
+
+.page-side {
+    position: sticky;
+    top: calc(var(--header-height) + 32px);
+    align-self: start;
+}
+
+.page-main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+/* Section anchors land below the sticky header. */
+.page-main > section,
+.page-main [id] {
+    scroll-margin-top: calc(var(--header-height) + 32px);
+}
+
+/* Two-tone headline: a gray kicker line over the black statement. */
+.page-title {
+    max-width: 880px;
+    margin: 0;
+}
+
+.page-kicker {
+    display: block;
+    color: var(--color-gray-light);
+}
+
+.lead {
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.67;
+}
+
+.lead em,
+.lead strong {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.section-heading {
+    font-size: 45px;
+    line-height: 1.05;
+    margin: 0 0 32px;
+}
+
+.caption {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-gray);
+}
+
+@media (max-width: 768px) {
+    .page {
+        display: block;
+        padding: 40px var(--margin-x) 80px;
+    }
+
+    .page-side {
+        display: none;
+    }
+
+    .page-main {
+        gap: 80px;
+    }
+
+    h1,
+    .section-heading {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .lead {
+        font-size: 17px;
+    }
+}
+
+/* ---------- Section links (SideNav) ---------- */
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.side-nav a {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-foreground);
+    transition: color .15s ease;
+}
+
+.side-nav a:hover,
+.side-nav a.is-active {
+    color: var(--color-accent);
+}
+
+/* ---------- Footer (original style) ---------- */
 
 footer {
     padding: 0;
@@ -1339,195 +1296,96 @@ footer {
 }
 
 
-/* Utility: hide on mobile */
-@media (max-width: 480px) {
-    .mobile-hidden {
-        display: none !important;
+
+/* The footer keeps the original type; the site-wide sans and heading styles
+   would otherwise restyle it. */
+footer,
+footer a,
+footer p {
+    font-family: 'Gabarito', sans-serif;
+}
+
+footer {
+    line-height: normal;
+}
+
+footer p {
+    line-height: 1.2;
+}
+
+/* Four links (with CV) instead of the original three: tighten the space under
+   them so the block still fits the pink card. */
+.footer-content-left-links {
+    margin-bottom: 16px;
+}
+
+footer h2 {
+    font-family: 'ArchivoBlack', sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0;
+    margin: 0 0 5px;
+}
+
+/* ---------- Project grid (ProjectGrid) ---------- */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 64px 32px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-foreground);
+}
+
+.project-card-media {
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+/* Covers keep their original proportions: full column width, natural height. */
+.project-card-media img,
+.project-card-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .4s ease;
+}
+
+.project-card:hover .project-card-media img,
+.project-card:hover .project-card-media video {
+    transform: scale(1.02);
+}
+
+.project-card-title {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    transition: color .15s ease;
+}
+
+.project-card:hover .project-card-title,
+.project-card:focus-visible .project-card-title {
+    color: var(--color-accent);
+}
+
+.project-card-description {
+    color: var(--color-gray);
+}
+
+@media (max-width: 720px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
     }
 }
 
-/* Mobile header — hidden on desktop */
-.header-mobile-bar,
-.header-mobile-nav {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .header-left,
-    .header-middle,
-    .header-right, .header-container {
-        display: none;
-    }
-
-    .main-header {
-        --header-bg-opacity: 1 !important;
-    }
-
-    .header-mobile-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px var(--margin-x);
-        margin-top: 15px;
-        position: relative;
-        z-index: 1002;
-    }
-
-    .header-mobile-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .header-mobile-title {
-        font-size: 24px;
-        margin: 0;
-        line-height: 1;
-    }
-
-    .header-mobile-logo img {
-        width: 32px;
-        height: 32px;
-    }
-
-    .menu-button-mobile {
-        background: transparent !important;
-        border: none !important;
-        padding: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-    }
-
-    .menu-button-mobile:hover {
-        background: transparent !important;
-    }
-
-    .menu-button-mobile img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .header-mobile-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        padding: 20px 24px;
-        position: absolute;
-        top: 15px;
-        right: calc(var(--margin-x) - 14px);
-        width: 190px;
-        box-sizing: border-box;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    /* Animated background same as contact dropdown */
-    .header-mobile-nav::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-color: var(--color-primary);
-        transform-origin: top right;
-        transform: scaleX(0) scaleY(0.3);
-        z-index: 0;
-    }
-
-    .header-mobile-nav .nav-link {
-        font-family: 'Gabarito', sans-serif;
-        font-size: 22px;
-        color: var(--color-black);
-        text-decoration: none;
-        position: relative;
-        z-index: 1;
-        opacity: 0;
-        transform: translateY(-6px);
-        transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .header-mobile-nav.menu-open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .header-mobile-nav.menu-open::before {
-        animation: dropdownGrow 0.4s ease forwards;
-    }
-
-    .header-mobile-nav.menu-open .nav-link {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .header-mobile-nav .nav-link:nth-child(1) { margin-top: 30px; }
-
-    .header-mobile-nav.menu-open .nav-link:nth-child(1) { transition-delay: 0.2s; }
-    .header-mobile-nav.menu-open .nav-link:nth-child(2) { transition-delay: 0.28s; }
-    .header-mobile-nav.menu-open .nav-link:nth-child(3) { transition-delay: 0.36s; }
-
-    .header-mobile-nav .menu-bottom {
-        position: absolute;
-        bottom: 2px;
-        left: 0;
-        margin-left: 0;
-        width: 100%;
-        transform: translateY(100%) !important;
-        opacity: 0;
-    }
-
-    .header-mobile-nav.menu-open .menu-bottom {
-        transform: translateY(100%) !important;
-        opacity: 1;
-        transition-delay: 0.5s;
-    }
-
-    .header-mobile-nav.menu-closing {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .header-mobile-nav.menu-closing::before {
-        animation: dropdownShrink 0.6s ease forwards;
-    }
-
-    .header-mobile-nav.menu-closing .nav-link {
-        opacity: 0;
-        transform: translateY(-6px);
-        transition-delay: 0s;
-    }
-
-    .header-mobile-nav.menu-closing .menu-bottom {
-        opacity: 0;
-        transition-delay: 0s;
-    }
-
-    .header-mobile-nav:not(.menu-open):not(.menu-closing) {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    .header-mobile-nav .nav-link:hover,
-    .header-mobile-nav .nav-link.active {
-        text-decoration: underline;
-    }
-}
-
-/* ===== Scroll Reveal ===== */
-.reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Higher-specificity overrides for elements whose own CSS sets opacity/transform */
-.projects-item.reveal:not(.in-view) {
-    opacity: 0;
-    transform: translateY(28px);
+/* The Projects page's lead sits between its title and the grid. */
+.projects-lead {
+    margin: 28px 0 64px;
 }

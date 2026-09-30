@@ -1,55 +1,22 @@
-body {
-    align-items: center;
-    justify-content: center;
+/* Playground. The page grid, type, and buttons come from styles.css; the
+   type filters sit in the left column as section links. */
+
+.play-main {
+    gap: 48px;
 }
 
-h3 {
-    color: var(--color-background);
-    margin: 0;
-}
-
-p {
-    color: var(--color-background);
-    margin: 0;
-}
-
-.main-content h1 {
-    margin-bottom: 0;
-}
-
-.play-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    width: 100%;
-}
-
-.play-filter {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-end;
-}
-
-.filter-spacer {
-    flex: 1;
-}
-
-.filter-btn {
+.play-filter .filter-btn {
+    padding: 0;
+    border: none;
     background: none;
-    border: 1px solid var(--color-foreground);
     color: var(--color-foreground);
-    padding: 6px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s ease, color 0.2s ease;
+    text-align: left;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background: var(--color-foreground);
-    color: var(--color-background);
+.play-filter .filter-btn:hover,
+.play-filter .filter-btn.active {
+    background: none;
+    color: var(--color-accent);
 }
 
 .play-item-wrapper.hidden {
@@ -108,7 +75,6 @@ p {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    margin-bottom: 40px;
     width: 100%;
 }
 
@@ -288,21 +254,22 @@ p {
     line-height: 1.6;
 }
 
+/* The site's outline button (.btn in styles.css). */
 .play-featured-btn {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 24px;
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: opacity 0.2s ease;
+    padding: 10px 16px;
+    border: 2px solid var(--color-foreground);
+    color: var(--color-foreground);
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color .15s ease, color .15s ease;
     align-self: flex-start;
 }
 
 .play-featured-btn:hover {
-    opacity: 0.85;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
 }
 
 .play-featured-info-links {
@@ -314,17 +281,6 @@ p {
 
 .play-featured-info-links .play-featured-btn {
     margin-top: 0;
-}
-
-.main-content {
-    width: 1020px;
-    margin: 0 auto;
-    padding: 0 var(--margin-x);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 180px;
 }
 
 .play-container {
@@ -372,32 +328,16 @@ p {
 }
 
 @media (max-width: 768px) {
-    .main-content {
-        width: calc(100vw - 2 * var(--margin-x));
-        margin: 0 auto;
-        padding: 0 var(--margin-x);
-        margin-top: 120px;
-    }
-
-    /* Stack header vertically */
-    .play-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+    /* No left column on phones: the filters become a row above the grid. */
+    .play .page-side {
+        display: block;
         margin-bottom: 24px;
     }
 
-    /* Wrapping filter buttons */
     .play-filter {
-        display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        gap: 8px;
-        width: 100%;
-    }
-
-    .filter-btn {
-        padding: 5px 14px;
-        font-size: 13px;
+        gap: 8px 20px;
     }
 
     .play-container {
@@ -433,10 +373,6 @@ p {
 }
 
 @media (max-width: 480px) {
-    .main-content {
-        margin-top: 100px;
-    }
-
     .play-container {
         column-count: 1;
     }

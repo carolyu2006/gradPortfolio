@@ -1,244 +1,218 @@
 <template>
 <AppHeader />
-        <div class="main-content">
-            <div class="content">
-                <!-- <h1 style="margin-top: 50px;">Hiii I'm Carol :)</h1> -->
+<main class="page">
+    <aside class="page-side">
+        <SideNav :links="sections" />
+    </aside>
 
-                <section class="head-section" style="margin-top: 50px;" id="about">
-                    <div>
-                        <div class="head-item-image-container">
-                            <img class="head-item-image" src="/assets/images/about/profile.webp" alt="Carol Yu">
-                            <h1>Carol Yu</h1>
-                            <h3>Product Designer + Creative Technologist</h3>
-                            <br>
-                            <a href="mailto:CAROL.YU@NYU.EDU" class="head-email">
-                                <h1>CAROL.YU@NYU.EDU</h1>
-                            </a>
-                        </div>
+    <div class="page-main">
+        <section id="overview" class="about-overview">
+            <h1 class="page-title">
+                <span class="page-kicker">About</span>
+                Hi, I'm Carol.
+            </h1>
+            <div class="about-overview-body">
+                <figure class="about-portrait">
+                    <img src="/assets/images/about/profile.webp" alt="Carol Yu">
+                    <figcaption class="caption">Carol Yu — designer and creative technologist, NYU Tisch School of
+                        the Arts.</figcaption>
+                </figure>
+                <div class="about-overview-text">
+                    <p class="lead">
+                        <em>A designer and creative technologist exploring how AI and play can make everyday tools
+                            feel more human.</em>
+                    </p>
+                    <p>
+                        For me, design is an interdisciplinary artwork. <strong>Technology</strong> forms the canvas
+                        that defines the possibilities; <strong>art</strong> is the unique strokes;
+                        <strong>business</strong>, <strong>philosophy</strong>, and <strong>game mechanics</strong>
+                        mix into the palette that creates experiences and interactions that resonate.
+                    </p>
+                    <p>I pour love into every design, weaving together this colorful world.</p>
+                    <div class="button-row">
+                        <a class="btn" href="/cv">View CV</a>
+                        <a class="btn" href="mailto:CAROL.YU@NYU.EDU">Email me</a>
                     </div>
-
-                    <div class="head-container">
-                        <h1 style="margin-top: 50px;">Hiii I'm Carol :)</h1>
-
-                        <h3> A <strong>Product Designer</strong> crafting engaging experiences that resonate with users.
-                        </h3>
-                        <!-- <p class="label">Artistic Statement </p> -->
-
-                        <p class="head-description">
-                            For me, <a class="highlight"> Design</a> is an interdisciplinary artwork. <a
-                                class="highlight">Technology</a> forms the canvas that defines the
-                            possibilities;
-                            <a class="highlight">Art</a> is the unique strokes; <a class="highlight"
-                                href="#business">Business</a>,
-                            <a class="highlight">Philosophy</a>, and <a class="highlight">Game Mechanics</a> mix into
-                            the palette that create experience and interactions that resonates.
-                        </p>
-                        <p class="head-description">
-                            I pour love into every design, weaving together this colorful world.
-                        </p>
-                        <br>
-                        <!-- <p class="label">Education </p> -->
-                        <strong>New York University, Tisch School of the Arts</strong>
-
-                        <div class="education">
-                            <p class="education-label">Major</p>
-                            <p>Interactive Media Arts BFA</p>
-                        </div>
-                        <div class="education">
-                            <p class="education-label">Minors </p>
-                            <div class="education-minors">
-                                <p>Game Design</p>
-                                <p>Social Entrepreneurship</p>
-                                <p>Business of Entertainment, Media and Technology</p>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="head-social-links">
-                            <a href="https://www.linkedin.com/in/carolyuhf/" target="_blank"
-                                rel="noopener noreferrer">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style="vertical-align: middle; margin-right: 6px;">
-                                    <path
-                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                        fill="currentColor" />
-                                </svg>
-                                hanfei-carol-yu
-                            </a>
-                            <a href="https://www.instagram.com/carolyuhf/" target="_blank" rel="noopener noreferrer">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style="vertical-align: middle; margin-right: 6px;">
-                                    <path
-                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                                        fill="currentColor" />
-                                </svg>
-                                @carollyuuu
-                            </a>
-                            <a href="https://github.com/carolyu2006" target="_blank" rel="noopener noreferrer">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    style="vertical-align: middle; margin-right: 6px;">
-                                    <path
-                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                                        fill="currentColor" />
-                                </svg>
-                                carolyu2006
-                            </a>
-                            <a href="https://www.xiaohongshu.com/user/profile/5d1cd7fa00000000120188e0?xsec_token=YBCBoIDQv8J87E1oyjqCuMg_Nt6OsVnhy_21ROXc6LLaA=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=N0ozQ0c8Sko2NzUyOTgwNjc1OTg8PUs5&apptime=1768556034&share_id=e22ed04444514283841f8ea95a601532"
-                                target="_blank" rel="noopener noreferrer">
-                                <img src="/assets/icons/rednote.webp" alt="RedNote" width="16" height="16"
-                                    style="vertical-align: middle; margin-right: 6px;">
-                                yhf20060726
-                            </a>
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <section class="more-about-section" id="outside-design">
-                    <div class="interests-page-wrapper">
-                        <div class="interests-panel">
-                            <h1>Outside Design</h1>
-                            <div class="interests-container">
-                                <div class="interest-item-scroll">
-                                    <img src="/assets/images/about/interest/1.webp" alt="Music">
-                                    <img src="/assets/images/about/interest/2.webp" alt="Guitar">
-                                    <img src="/assets/images/about/interest/3.webp" alt="Painting">
-                                    <img src="/assets/images/about/interest/leaf.webp" alt="leaf">
-                                    <img src="/assets/images/about/interest/flower.webp" alt="flower">
-                                    <img src="/assets/images/about/interest/4.webp" alt="Photography">
-                                    <img src="/assets/images/about/interest/5.webp" alt="3D printing">
-                                    <img src="/assets/images/about/interest/6.webp" alt="Robotics">
-                                    <img src="/assets/images/about/interest/leaf.webp" alt="leaf">
-                                    <img src="/assets/images/about/interest/7.webp" alt="Arduino">
-                                    <img src="/assets/images/about/interest/8.webp" alt="WordPress">
-                                    <img src="/assets/images/about/interest/9.webp" alt="Github">
-                                    <img src="/assets/images/about/interest/10.webp" alt="Music">
-                                    <img src="/assets/images/about/interest/flower.webp" alt="flower">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="community-section" id="community">
-                    <h1>Community</h1>
-                    <div class="community-timeline">
-                        <div class="community-item">
-                            <div class="community-content">
-                                <h3>NYU CSSA</h3>
-                                <p class="community-role">UI/UX Designer & Developer</p>
-                            </div>
-                            <button type="button" class="community-expand" aria-expanded="false" aria-label="Expand">
-                                <span class="community-expand-icon"></span>
-                            </button>
-                            <div class="community-detail">
-                                <br>
-                                <h3>comming soon.. 👉👈</h3>
-                            </div>
-                        </div>
-
-                        <div class="community-item">
-                            <div class="community-content">
-                                <h3>Dreamaway Studio</h3>
-                                <p class="community-role">Founder & Designer & Project Manager & Developer</p>
-                            </div>
-                            <button type="button" class="community-expand" aria-expanded="false" aria-label="Expand">
-                                <span class="community-expand-icon"></span>
-                            </button>
-                            <div class="community-detail">
-                                <br>
-                                <h3>comming soon.. 👉👈</h3>
-                            </div>
-                        </div>
-
-                        <div class="community-item">
-                            <div class="community-content">
-                                <h3>Tech@NYU Developer Team</h3>
-                                <p class="community-role">Designer & Developer</p>
-                            </div>
-                            <button type="button" class="community-expand" aria-expanded="false" aria-label="Expand">
-                                <span class="community-expand-icon"></span>
-                            </button>
-                            <div class="community-detail">
-                                <br>
-                                <h3>comming soon.. 👉👈</h3>
-                                <!-- <p class="community-description">Design and development for <a href="https://techatnyu.org/" target="_blank" rel="noopener noreferrer">Tech@NYU</a>. Add more details here.</p>
-                                <div class="community-images">
-                                    <img src="/assets/images/about/community/techatnyu-1.webp" alt="Tech@NYU">
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="skills-section" id="skills">
-                    <h1>SKILLS</h1>
-                    <div class="skill-container">
-                        <div class="skill-category">
-                            <!-- Programming -->
-                            <h2 class="skill-label">Programming</h2>
-                            <div class="skill-list">
-                                <h3>Languages</h3>
-                                <p>JavaScript, Java, Python, C#, C++, SQL</p>
-                                <h3>Frameworks</h3>
-                                <p>HTML/CSS, React.js, Next.js, SwiftUI, Unity, WeChat DevTools</p>
-
-                                <h3>Tools</h3>
-                                <p>Three.js, P5.js, Processing</p>
-                                <h3>Other</h3>
-                                <p>Github, Arduino, WordPress</p>
-                            </div>
-                        </div>
-
-                        <div class="skill-category" id="design">
-                            <h2 class="skill-label">Design</h2>
-                            <div class="skill-list">
-                                <h3>Design Tools</h3>
-                                <p>Figma</p>
-                                <h3>Adobe Suite</h3>
-                                <p>After Effects, Premiere, Illustrator, Photoshop</p>
-
-                                <h3>Modeling</h3>
-                                <p>Blender, Fusion 360</p>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h2 class="skill-label">Other</h2>
-                            <div class="skill-list">
-                                <h3>Languages</h3>
-                                <p>Chinese (Native), English (Fluent)</p>
-                                <h3>Hobbies</h3>
-                                <p>Guitar, Music composition, Painting, Photography, 3D printing/laser cutting, Robotics
-                                </p>
-
-                                <h3>Soft Skills</h3>
-                                <p>Teamwork, Communication, Leadership, Time Management</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="/assets/images/main/lotus-leaf.svg" alt="skills">
-                </section>
+                    <p class="about-links">
+                        <a href="https://www.linkedin.com/in/carolyuhf/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://github.com/carolyu2006" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://www.instagram.com/carolyuhf/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </p>
+                </div>
             </div>
-        </div>
-        <AppFooter />
+        </section>
+
+        <section id="research">
+            <h2 class="section-heading">Research Interests</h2>
+            <p class="lead about-research-intro">
+                <em>As AI takes over more of the making, what is left for designers — and for the people we design
+                    for?</em> Three questions run through my work:
+            </p>
+            <div class="about-research">
+                <article v-for="(item, index) in research" :key="item.title" class="about-research-item">
+                    <h4>{{ String(index + 1).padStart(2, '0') }}</h4>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.question }}</p>
+                    <p class="about-research-links">
+                        <a v-for="link in item.projects" :key="link.label" :href="link.href"
+                           :target="link.href.startsWith('http') ? '_blank' : null"
+                           :rel="link.href.startsWith('http') ? 'noopener noreferrer' : null">{{ link.label }}</a>
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="outside-design" class="outside-design">
+            <div ref="wrapper" class="interests-wrapper">
+                <div ref="panel" class="interests-panel">
+                    <h2 class="section-heading">Outside Design</h2>
+                    <div class="interests-container">
+                        <div ref="track" class="interest-item-scroll">
+                        <img src="/assets/images/about/interest/1.webp" alt="Music">
+                        <img src="/assets/images/about/interest/2.webp" alt="Guitar">
+                        <img src="/assets/images/about/interest/3.webp" alt="Painting">
+                        <img src="/assets/images/about/interest/leaf.webp" alt="leaf">
+                        <img src="/assets/images/about/interest/flower.webp" alt="flower">
+                        <img src="/assets/images/about/interest/4.webp" alt="Photography">
+                        <img src="/assets/images/about/interest/5.webp" alt="3D printing">
+                        <img src="/assets/images/about/interest/6.webp" alt="Robotics">
+                        <img src="/assets/images/about/interest/leaf.webp" alt="leaf">
+                        <img src="/assets/images/about/interest/7.webp" alt="Arduino">
+                        <img src="/assets/images/about/interest/8.webp" alt="WordPress">
+                        <img src="/assets/images/about/interest/9.webp" alt="Github">
+                        <img src="/assets/images/about/interest/10.webp" alt="Music">
+                        <img src="/assets/images/about/interest/flower.webp" alt="flower">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<AppFooter />
 </template>
 
 <script setup>
+const wrapper = ref(null);
+const panel = ref(null);
+const track = ref(null);
+
+const sections = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'research', label: 'Research Interests' },
+    { id: 'outside-design', label: 'Outside Design' }
+];
+
+const research = [
+    {
+        title: 'Human–AI Creativity',
+        question: "How can AI act as a creative collaborator that understands a brand, a story, or a person's intent — rather than a replacement for the designer?",
+        projects: [
+            { label: 'AI Brand Kit', href: '/projects/ai-brand-kit' },
+            { label: 'AIGC Video Automation', href: '/projects/aigc-video-automation' },
+            { label: 'WeChat Channels × AI', href: '/projects/wechatchannels' }
+        ]
+    },
+    {
+        title: 'Tools for Attention & Memory',
+        question: 'How can interfaces help people hold on to what matters — their tabs, their files, their memories — without adding more cognitive load?',
+        projects: [
+            { label: 'interTabs', href: '/projects/intertabs' },
+            { label: 'Palette U', href: '/projects/paletteu' },
+            { label: 'Cosma Sense', href: 'https://cosmasense.tech/' }
+        ]
+    },
+    {
+        title: 'Playful & Spatial Interaction',
+        question: 'What happens when everyday digital tools leave the flat screen — through games, 3D space, and mixed reality?',
+        projects: [
+            { label: 'Everstream', href: '/projects/everstream' },
+            { label: 'DREAMMAIL', href: 'https://devpost.com/software/dreamail' },
+            { label: 'MBTI Ideal Partner', href: '/projects/mbtiidealpartner' }
+        ]
+    }
+];
+
+// Outside Design: the panel pins under the header while the page scroll drives
+// the image strip sideways (smoothed), then lets go at the end. The wrapper is
+// as tall as the strip is wide, so scrolling down = moving along the strip.
+const LERP_SPEED = 0.12;
+let cleanupOutside = null;
+
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+onMounted(() => {
+  const wrapperEl = wrapper.value;
+  const panelEl = panel.value;
+  const trackEl = track.value;
+  if (!wrapperEl || !panelEl || !trackEl) return;
+
+  let currentX = 0;
+  let targetX = 0;
+  let animating = false;
+  let frame = 0;
+
+  const headerHeight = () => parseFloat(getComputedStyle(panelEl).top) || 0;
+  // The strip starts at the column's left edge, so that offset counts too.
+  const scrollableWidth = () => Math.max(0, trackEl.offsetLeft + trackEl.offsetWidth - panelEl.clientWidth);
+
+  // The panel is full-bleed but its heading and first image line up with the column.
+  const measure = () => {
+    wrapperEl.style.setProperty('--bleed', `${wrapperEl.getBoundingClientRect().left + window.scrollX}px`);
+    wrapperEl.style.height = `${panelEl.offsetHeight + scrollableWidth()}px`;
+  };
+
+  const animate = () => {
+    const dx = targetX - currentX;
+    if (Math.abs(dx) < 0.5) {
+      currentX = targetX;
+      animating = false;
+    } else {
+      currentX += dx * LERP_SPEED;
+      frame = requestAnimationFrame(animate);
+    }
+    trackEl.style.transform = `translateX(${currentX}px)`;
+  };
+
+  const update = () => {
+    const maxScroll = wrapperEl.offsetHeight - panelEl.offsetHeight;
+    const scrolled = headerHeight() - wrapperEl.getBoundingClientRect().top;
+    const progress = maxScroll > 0 ? Math.min(Math.max(scrolled / maxScroll, 0), 1) : 0;
+    targetX = -easeInOutCubic(progress) * scrollableWidth();
+    if (!animating) {
+      animating = true;
+      frame = requestAnimationFrame(animate);
+    }
+  };
+
+  const onResize = () => { measure(); update(); };
+  const images = Array.from(trackEl.querySelectorAll('img'));
+  images.forEach((img) => {
+    if (!img.complete) img.addEventListener('load', onResize, { once: true });
+  });
+
+  measure();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', onResize);
+  cleanupOutside = () => {
+    cancelAnimationFrame(frame);
+    window.removeEventListener('scroll', update);
+    window.removeEventListener('resize', onResize);
+  };
+});
+
+onBeforeUnmount(() => cleanupOutside?.());
+
 useHead({
-  title: 'About Carol',
+  title: 'About — Carol Yu',
   link: [
     { rel: 'icon', type: 'image/png', href: '/assets/images/main/logo.svg' },
     { rel: 'stylesheet', href: '/css/styles.css' },
-    { rel: 'stylesheet', href: '/css/experience.css' },
     { rel: 'stylesheet', href: '/css/about.css' }
   ],
   script: [
-    { src: '/js/script.js', body: true },
-    { src: '/js/about.js', body: true }
+    { src: '/js/script.js', body: true }
   ]
 });
 </script>

@@ -21,16 +21,28 @@
   - `--color-green`
   - `--color-blue`
   - `--color-purple`
+  - `--color-accent` (deep pink for accent text, links, and active states)
+  - `--color-line` (hairline rules and dividers)
+- Pink is the single accent. Use `--color-accent` for text in the accent color;
+  the soft pinks are too light to read as text and are for fills and rules only.
 
-## 2) Exception for Project Pages
+## 2) Project Pages Use the Same Palette
 
-- For project-specific sections/pages, project colors are allowed when needed for branding and storytelling.
-- Outside of those project-specific contexts, default back to shared tokens from `public/css/styles.css`.
+- Project case studies use the same neutral palette as the rest of the site: no
+  project brand colours, tinted cards, coloured labels, or gradient backdrops.
+  Separate blocks with black rules (`border-top: 2px solid
+  var(--color-foreground)`), weight, and gray text; put transparent media on
+  `--color-surface`. Colour comes only from the project imagery itself.
 
 ## 3) Typography
 
-- Keep typography clear, warm, and editorial.
-- Use existing global font styles before creating new type styles.
+- Keep typography clear and editorial: one neo-grotesk sans, `var(--font-sans)`
+  (Helvetica Neue, Helvetica, Arial), with weight doing the work — bold headings,
+  links, and labels; regular body text. The display fonts (Gabarito,
+  ArchivoBlack, GajrajOne) are only for the home hero, the Contact dropdown, and
+  the footer.
+- Use existing global font styles before creating new type styles: `h1` 45px,
+  `h2` 32px, `.section-heading` 45px, `.lead` 18px, body 16px/1.6.
 - Use pixel values for font sizes, for example `font-size: 24px;`.
 - Avoid fluid font-size formulas like `clamp()`, `vw`, or `rem` unless there is a clear responsive design reason.
 - Headings should feel intentional and spacious; avoid adding many competing heading sizes.
@@ -80,8 +92,9 @@
 
 - Images should support the story and composition; avoid stretching or distorting assets.
 - Use consistent border radius and cropping behavior within the same section.
-- Decorative images, icons, leaves, and floating elements should not block text readability.
-- Motion on decorative assets should be slow, smooth, and lightweight.
+- Outside the home-page hero and the footer, no decorative illustrations, leaves,
+  or floating elements. Imagery is project media and photography, shown at its
+  original proportions.
 
 ## 9) Motion and Interaction
 
@@ -89,7 +102,9 @@
 - Prefer transform and opacity for animations.
 - Keep hover transitions short and page-level transitions smoother.
 - Avoid animating layout-heavy properties like `width`, `height`, `top`, and `left` unless necessary.
-- Repeating decorative animations should be slow enough that they do not compete with content.
+- The home-page hero intro and the Contact dropdown keep their original
+  animations; everywhere else, motion is limited to short hover and focus
+  transitions.
 
 ## 10) Implementation Rules
 

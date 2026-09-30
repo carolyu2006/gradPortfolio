@@ -1,79 +1,46 @@
 <template>
-<AppHeader hero="dark" />
-        <img class="hero-image" src="/assets/images/projects/orango-branding/cover.webp" alt="Orango Branding">
+<AppHeader />
+<img class="hero-image" src="/assets/images/projects/orango-branding/cover.webp" alt="Orango Branding">
 
-        <div class="content">
-            <div class="project-header-container">
-                <div class="project-header">
-                    <h4 class="tag" style="background-color: #FF8519;">2026</h4>
+<main class="page project-page">
+    <aside class="page-side"><ProjectSectionNav /></aside>
 
-                    <h1>Orango Branding</h1>
-                    <h3>Brand identity for a playful web-based social gaming platform.</h3>
-                    <h3>Defining the visual language, typography, and assets that shape Orango’s joyful, social-first experience.</h3>
-                </div>
-            </div>
+    <article class="content page-main">
+        <header class="project-header">
+            <p class="project-kicker">2026</p>
+            <h1>Orango Branding</h1>
+            <p class="lead">Brand identity for a playful web-based social gaming platform.</p>
+            <p>Defining the visual language, typography, and assets that shape Orango's joyful, social-first
+                experience.</p>
+        </header>
 
-            <!-- Overview -->
-            <section class="full-width-images">
-                <img src="/assets/images/projects/orango-branding/0.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-1.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-2.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-3.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-4.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-5.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-6.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/1-7.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/2-1.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/2-2.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/2-3.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/3-1.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/3-3.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/3-4.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/3-5.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/4-1.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/4-2.webp" alt="Orango Branding">
-                <!-- <img src="/assets/images/projects/orango-branding/4-3.webp" alt="Orango Branding"> -->
-                <img src="/assets/images/projects/orango-branding/4-4.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/4-5.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-1.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-2.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-3.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-4.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-5.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-6.webp" alt="Orango Branding">
-                <img src="/assets/images/projects/orango-branding/5-7.webp" alt="Orango Branding">
-            </section>
-      
+        <section>
+            <h2>Brand identity</h2>
+            <figure>
+                <img v-for="board in boards" :key="board" :src="`/assets/images/projects/orango-branding/${board}.webp`"
+                    alt="Orango brand identity board">
+            </figure>
+        </section>
 
-            <section class="next-project-section">
-                <h1 style="font-size: 24px;">More Projects</h1>
-                <div class="next-projects-container">
-                    <a class="next-project-card" href="/projects/aigc-video-automation">
-                        <div class="next-project-image">
-                            <img src="/assets/images/covers/aigc-video-automation.webp" alt="AIGC Video Automation">
-                        </div>
-                        <div class="next-project-content">
-                            <h2>AIGC Video Automation</h2>
-                            <p>Turning product information and cultural trends into scalable e-commerce video ads.</p>
-                        </div>
-                    </a>
-                    <a class="next-project-card" href="/projects/wechatchannels">
-                        <div class="next-project-image">
-                            <img src="/assets/images/covers/wechat.webp" alt="WeChat Channels">
-                        </div>
-                        <div class="next-project-content">
-                            <h2>WeChat Channels</h2>
-                            <p>Reimagining video creation with AI for the Tencent WeChat Channels team.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <AppFooter />
+        <section class="next-project-section">
+            <h2>More projects</h2>
+            <ProjectGrid :items="pickProjects('/projects/aigc-video-automation', '/projects/wechatchannels')" />
+        </section>
+    </article>
+</main>
+<AppFooter />
 </template>
 
 <script setup>
+// The brand boards, in order. (4-3 is left out.)
+const boards = [
+  '0', '1-1', '1-2', '1-3', '1-4', '1-5', '1-6', '1-7',
+  '2-1', '2-2', '2-3',
+  '3-1', '3-3', '3-4', '3-5',
+  '4-1', '4-2', '4-4', '4-5',
+  '5-1', '5-2', '5-3', '5-4', '5-5', '5-6', '5-7'
+];
+
 useHead({
   title: 'Orango Branding',
   link: [

@@ -1,213 +1,136 @@
 <template>
-<AppHeader hero="dark" />
-        <img class="hero-image" src="/assets/images/projects/everstream/cover.webp" alt="Everstream">
+<AppHeader />
+<img class="hero-image" src="/assets/images/projects/everstream/cover.webp" alt="Everstream">
 
-        <div class="content">
-            <div class="project-header-container">
-                <div class="project-header">
-                    <h4 class="tag" style="background-color: #a4d7f4;">2025</h4>
+<main class="page project-page">
+    <aside class="page-side"><ProjectSectionNav /></aside>
 
-                    <h1>Everstream</h1>
-                    <h3>A 2D game depicting the journey of the four seasons along a stream.</h3>
-                </div>
-                <div class="button-container">
-                    <!-- <button class="button" onclick="window.location.href='https://youtu.be/i4X9Y0rxINE'"
-                        target="_blank">View Video</button>
-                    <button class="button" onclick="window.location.href='http://www.paletteu.com/'"
-                        target="_blank">View Website</button> -->
-                    <!-- <button class="button"
-                        onclick="window.location.href='https://chromewebstore.google.com/detail/intertabs/ggofillocibganndbabgcplbefnhadao'"
-                        target="_blank">Get Extension</button>
-                    <button class="button" onclick="window.location.href='https://devpost.com/software/intertabs'"
-                        target="_blank">Devpost</button> -->
-                </div>
-            </div>
+    <article class="content page-main">
+        <header class="project-header">
+            <p class="project-kicker">2025</p>
+            <h1>Everstream</h1>
+            <p class="lead">A 2D game depicting the journey of the four seasons along a stream.</p>
+        </header>
 
-            <div class="key-info">
-                <div class="key-info-item">
-                    <h3>TIMELINE</h3>
-                    <p>Oct 2025 - Jan 2026</p>
-                </div>
-                <div class="key-info-item">
-                    <h3>TEAM</h3>
-                    <p>Personal Project</p>
-                </div>
-                <div class="key-info-item">
-                    <h3>ROLE</h3>
-                    <p>Game Designer & Developer & Music Artist</p>
-                </div>
-                <div class="key-info-item">
-                    <h3>SKILLS</h3>
-                    <p>Unity, C#, Figma, Adobe Illustrator, </p>
-                </div>
-            </div>
-            <!-- Overview -->
-            <section>
-                <div class="overview-container">
-                    <div>
-                        <h2>OVERVIEW</h2>
+        <dl class="project-facts">
+            <div><dt>Timeline</dt><dd>Oct 2025 – Jan 2026</dd></div>
+            <div><dt>Team</dt><dd>Personal project</dd></div>
+            <div><dt>Role</dt><dd>Game Designer, Developer &amp; Music Artist</dd></div>
+            <div><dt>Skills</dt><dd>Unity, C#, Figma, Adobe Illustrator</dd></div>
+        </dl>
 
-                        <h3 class="overview-intro">Final Project for NYU Game Center's Game Development Course.</h3>
-                        <!-- <div class="overview-container"> -->
-                        <div class="overview-accomplishments">
-                            <p>Several of my accomplishments included:</p>
+        <section>
+            <h2>Overview</h2>
+            <p class="lead">Final project for NYU Game Center's Game Development course.</p>
+            <p>I made every part of it:</p>
+            <ul>
+                <li><strong>Development</strong> — the game, built in Unity and C#.</li>
+                <li><strong>Music</strong> — the original music and sound effects, with guitar and GarageBand.</li>
+                <li><strong>Art</strong> — the original art, in Adobe Illustrator and Figma.</li>
+                <li><strong>Game UI design</strong> — the interface, designed in Figma.</li>
+            </ul>
+            <figure>
+                <img src="/assets/images/projects/everstream/process.webp" alt="Everstream in development">
+                <figcaption>Everstream in development.</figcaption>
+            </figure>
+        </section>
 
-                            <div class="overview-card-container">
-                                <div class="overview-card" style="background-color: #ccecff;">
-                                    <div class="overview-card-title">
-                                        <h4>01</h4>
-                                        <h3>Development</h3>
-                                    </div>
-                                    <p>Developing the game using Unity and C#.
-                                    </p>
-                                </div>
-                                <div class="overview-card" style="background-color: #ccecff;">
-                                    <div class="overview-card-title">
-                                        <h4>02</h4>
-                                        <h3>Music</h3>
-                                    </div>
-                                    <p>Creating the original music and sound effects for the game with Guitar and
-                                        GarageBand.
-                                    </p>
-                                </div>
-                                <div class="overview-card" style="background-color: #ccecff;">
-                                    <div class="overview-card-title">
-                                        <h4>03</h4>
-                                        <h3>Art</h3>
-
-                                    </div>
-                                    <p>Creating the original art for the game with Adobe Illustrator and Figma.
-                                    </p>
-                                </div>
-                                <div class="overview-card" style="background-color: #ccecff;">
-                                    <div class="overview-card-title">
-                                        <h4>04</h4>
-                                        <h3>Game UI Design</h3>
-                                    </div>
-                                    <p>Designing the game UI with Figma.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="overview-image-container">
-                        <img class="overview-image" src="/assets/images/projects/everstream/process.webp" alt="overview">
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- video -->
-            <section>
-                <h2>Final Demo</h2>
-                <iframe src="https://www.youtube.com/embed/MlhcxK95jvM" title="YouTube video player" frameborder="0"
+        <section>
+            <h2>Final demo</h2>
+            <figure>
+                <iframe src="https://www.youtube.com/embed/MlhcxK95jvM" title="Everstream final demo"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </section>
-            <section>
-                <h2>Game UI</h2>
-                <div class="two-column-container">
-                    <img src="/assets/images/projects/everstream/ui1.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/ui4.webp" alt="Game UI">
-                </div>
+                    allowfullscreen></iframe>
+                <figcaption>A playthrough of the final game.</figcaption>
+            </figure>
+        </section>
 
-                <div class="one-column-container">
-                    <img src="/assets/images/projects/everstream/ui2.webp" alt="Game UI">
+        <section>
+            <h2>Game UI</h2>
+            <figure>
+                <div class="figure-grid">
+                    <img src="/assets/images/projects/everstream/ui1.webp" alt="Everstream game UI">
+                    <img src="/assets/images/projects/everstream/ui4.webp" alt="Everstream game UI">
                 </div>
-                <br>
+                <img src="/assets/images/projects/everstream/ui2.webp" alt="Everstream game UI">
+                <figcaption>In-game UI.</figcaption>
+            </figure>
 
-                <h3>Win Screen UI</h3>
-                <div class="two-column-container">
-                    <img src="/assets/images/projects/everstream/ui5.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/ui6.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/ui7.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/ui8.webp" alt="Game UI">
+            <h3>Win screen</h3>
+            <figure>
+                <div class="figure-grid">
+                    <img src="/assets/images/projects/everstream/ui5.webp" alt="Everstream win screen">
+                    <img src="/assets/images/projects/everstream/ui6.webp" alt="Everstream win screen">
+                    <img src="/assets/images/projects/everstream/ui7.webp" alt="Everstream win screen">
+                    <img src="/assets/images/projects/everstream/ui8.webp" alt="Everstream win screen">
                 </div>
-                <br>
-                <h3>Menu UI</h3>
-                <div class="two-column-container">
-                    <img src="/assets/images/projects/everstream/menu-spring.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/menu-summer.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/menu-autumn.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/menu-winter.webp" alt="Game UI">
-                </div>
-                <br>
-                <h3>Color Palette</h3>
-                <div class="two-column-container">
-                    <img src="/assets/images/projects/everstream/color1.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/color2.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/color3.webp" alt="Game UI">
-                    <img src="/assets/images/projects/everstream/color4.webp" alt="Game UI">
-                </div>
-                <br>
+                <figcaption>Win screens.</figcaption>
+            </figure>
 
-                <div class="two-column-container">
-                    <div>
-                        <h3>Spring</h3>
-                        <div class="one-column-container">
-                            <img src="/assets/images/projects/everstream/spring.webp" alt="Spring">
-                            <img src="/assets/images/projects/everstream/spring_2.webp" alt="Spring">
-                            <img src="/assets/images/projects/everstream/spring_3.webp" alt="Spring">
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Summer</h3>
-                        <div class="one-column-container">
-                            <img src="/assets/images/projects/everstream/summer.webp" alt="Summer">
-                            <img src="/assets/images/projects/everstream/summer_2.webp" alt="Summer">
-                            <img src="/assets/images/projects/everstream/summer_3.webp" alt="Summer">
-                        </div>
-                    </div>
+            <h3>Menu</h3>
+            <figure>
+                <div class="figure-grid">
+                    <img src="/assets/images/projects/everstream/menu-spring.webp" alt="Everstream menu in spring">
+                    <img src="/assets/images/projects/everstream/menu-summer.webp" alt="Everstream menu in summer">
+                    <img src="/assets/images/projects/everstream/menu-autumn.webp" alt="Everstream menu in autumn">
+                    <img src="/assets/images/projects/everstream/menu-winter.webp" alt="Everstream menu in winter">
                 </div>
-                <br>
-                <div class="two-column-container">
-                    <div>
-                        <h3>Autumn</h3>
-                        <div class="one-column-container">
-                            <img src="/assets/images/projects/everstream/autumn.webp" alt="Autumn">
-                            <img src="/assets/images/projects/everstream/autumn_2.webp" alt="Autumn">
-                            <img src="/assets/images/projects/everstream/autumn_3.webp" alt="Autumn">
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Winter</h3>
-                        <div class="one-column-container">
-                            <img src="/assets/images/projects/everstream/winter.webp" alt="Winter">
-                            <img src="/assets/images/projects/everstream/winter_2.webp" alt="Winter">
-                            <img src="/assets/images/projects/everstream/winter_3.webp" alt="Winter">
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <figcaption>The menu in spring, summer, autumn, and winter.</figcaption>
+            </figure>
 
-            <section class="next-project-section">
-                <h1 style="font-size: 24px;">More Projects</h1>
-                <div class="next-projects-container">
-                    <a class="next-project-card" href="/projects/wechatchannels">
-                        <div class="next-project-image">
-                            <img src="/assets/images/covers/wechat.webp" alt="WeChat Channels">
-                        </div>
-                        <div class="next-project-content">
-                            <h2>WeChat Channels</h2>
-                            <p>Reimagining video creation with AI for the Tencent WeChat Channels team.</p>
-                        </div>
-                    </a>
-                    <a class="next-project-card" href="/projects/ai-brand-kit">
-                        <div class="next-project-image">
-                            <img src="/assets/images/covers/ai-brand-kit.webp" alt="AI Brand Kit">
-                        </div>
-                        <div class="next-project-content">
-                            <h2>AI Brand Kit</h2>
-                            <p>Training AI for brand content automation by creating a skill and a LoRA.</p>
-                        </div>
-                    </a>
+            <h3>Colour palette</h3>
+            <figure>
+                <div class="figure-grid">
+                    <img src="/assets/images/projects/everstream/color1.webp" alt="Everstream colour palette">
+                    <img src="/assets/images/projects/everstream/color2.webp" alt="Everstream colour palette">
+                    <img src="/assets/images/projects/everstream/color3.webp" alt="Everstream colour palette">
+                    <img src="/assets/images/projects/everstream/color4.webp" alt="Everstream colour palette">
                 </div>
-            </section>
-        </div>
+                <figcaption>A palette for each season.</figcaption>
+            </figure>
 
-        <AppFooter />
+            <h3>The four seasons</h3>
+            <figure>
+                <div class="figure-grid figure-grid--3">
+                    <img src="/assets/images/projects/everstream/spring.webp" alt="Spring">
+                    <img src="/assets/images/projects/everstream/spring_2.webp" alt="Spring">
+                    <img src="/assets/images/projects/everstream/spring_3.webp" alt="Spring">
+                </div>
+                <figcaption>Spring.</figcaption>
+            </figure>
+            <figure>
+                <div class="figure-grid figure-grid--3">
+                    <img src="/assets/images/projects/everstream/summer.webp" alt="Summer">
+                    <img src="/assets/images/projects/everstream/summer_2.webp" alt="Summer">
+                    <img src="/assets/images/projects/everstream/summer_3.webp" alt="Summer">
+                </div>
+                <figcaption>Summer.</figcaption>
+            </figure>
+            <figure>
+                <div class="figure-grid figure-grid--3">
+                    <img src="/assets/images/projects/everstream/autumn.webp" alt="Autumn">
+                    <img src="/assets/images/projects/everstream/autumn_2.webp" alt="Autumn">
+                    <img src="/assets/images/projects/everstream/autumn_3.webp" alt="Autumn">
+                </div>
+                <figcaption>Autumn.</figcaption>
+            </figure>
+            <figure>
+                <div class="figure-grid figure-grid--3">
+                    <img src="/assets/images/projects/everstream/winter.webp" alt="Winter">
+                    <img src="/assets/images/projects/everstream/winter_2.webp" alt="Winter">
+                    <img src="/assets/images/projects/everstream/winter_3.webp" alt="Winter">
+                </div>
+                <figcaption>Winter.</figcaption>
+            </figure>
+        </section>
+
+        <section class="next-project-section">
+            <h2>More projects</h2>
+            <ProjectGrid :items="pickProjects('/projects/wechatchannels', '/projects/ai-brand-kit')" />
+        </section>
+    </article>
+</main>
+<AppFooter />
 </template>
 
 <script setup>
