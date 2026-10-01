@@ -1,5 +1,6 @@
 <template>
-<header class="site-header" :class="{ 'is-scrolled': isScrolled, 'is-menu-open': isMenuOpen }" ref="headerEl">
+<header class="site-header"
+        :class="{ 'is-overlay': isOverlay, 'is-scrolled': isScrolled, 'is-menu-open': isMenuOpen }" ref="headerEl">
     <div class="site-header-inner">
         <a href="/" class="site-logo" aria-label="Carol Yu, home">
             <img src="/assets/icons/yu.svg" alt="">
@@ -49,6 +50,10 @@ const section = computed(() => {
     if (path.startsWith('/cv')) return 'cv';
     return '';
 });
+
+// Project pages open on a full-bleed hero, so the header floats over it:
+// transparent with light type until the page is scrolled.
+const isOverlay = computed(() => /^\/projects\/[^/]+/.test(route.path));
 
 const headerEl = ref(null);
 const isScrolled = ref(false);

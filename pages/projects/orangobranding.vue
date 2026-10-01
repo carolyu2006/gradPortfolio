@@ -14,17 +14,26 @@
                 experience.</p>
         </header>
 
+        <p class="statement"><span class="statement-label">Design question</span>What should a visual identity look
+            like when its job is to make people want to put their phones down and play together?</p>
+
+        <section>
+            <h2>Abstract</h2>
+            <p class="lead">Orango is a web game platform for offline social play. Its identity has to feel light,
+                warm, and instantly approachable — before anyone has read a rule.</p>
+            <p>This is the identity behind <a href="/projects/orangogames">Orango Games</a>: the visual language,
+                typography, and assets used across the games and the platform. The research behind the
+                games — how people interact when they play together in the same room — is covered on that page.</p>
+            <!-- TODO(research): add 2–3 sentences on the choices that tie back to the research — e.g. why orange, why
+                 the character, how the identity signals “easy to join” to people who don't play games. -->
+        </section>
+
         <section>
             <h2>Brand identity</h2>
             <figure>
                 <img v-for="board in boards" :key="board" :src="`/assets/images/projects/orango-branding/${board}.webp`"
                     alt="Orango brand identity board">
             </figure>
-        </section>
-
-        <section class="next-project-section">
-            <h2>More projects</h2>
-            <ProjectGrid :items="pickProjects('/projects/aigc-video-automation', '/projects/wechatchannels')" />
         </section>
     </article>
 </main>

@@ -15,9 +15,6 @@
                 <a href="https://www.linkedin.com/in/carolyuhf/" target="_blank" rel="noopener noreferrer">linkedin.com/in/carolyuhf</a>
                 <a href="https://github.com/carolyu2006" target="_blank" rel="noopener noreferrer">github.com/carolyu2006</a>
             </p>
-            <p class="cv-actions">
-                <button type="button" class="cv-print" @click="printCv">Save as PDF</button>
-            </p>
         </header>
 
         <section id="research-interests" class="cv-section">
@@ -63,8 +60,6 @@
 </template>
 
 <script setup>
-const printCv = () => window.print();
-
 const slug = (title) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const sections = [
@@ -133,12 +128,7 @@ const sections = [
                 points: [
                     'Built branding and responsive websites for four startup and non-profit clients across FinTech, non-profit, and AI — including Sweet Dreams 4 All and Global Delta Securities.'
                 ]
-            }
-        ]
-    },
-    {
-        title: 'Teaching',
-        entries: [
+            },
             {
                 date: 'Apr – Aug 2025',
                 title: 'Tech X Academy — Teaching Assistant',
@@ -168,7 +158,7 @@ const sections = [
             {
                 date: '2026',
                 title: 'Cosma Sense',
-                href: 'https://cosmasense.tech/',
+                href: '/projects/cosmasense',
                 subtitle: 'Product design and frontend for a local-first, AI-powered semantic search engine for personal files.'
             },
             {
@@ -209,11 +199,6 @@ const sections = [
                 date: '2025',
                 title: 'HOF Hack 2025 — 1st Place, Best UI/UX, Best Beginner Hack',
                 subtitle: 'For interTabs, an AI-powered Chrome extension for tab management.'
-            },
-            {
-                date: '2025',
-                title: 'Fazier — #1 Product of the Day',
-                subtitle: 'interTabs, on its public launch.'
             }
         ]
     },

@@ -43,7 +43,11 @@
     <div class="page-main">
         <section id="work">
             <h2 class="section-heading">Work</h2>
-            <ProjectGrid :items="projects" />
+            <div v-for="topic in topics" :id="topic.id" :key="topic.title" class="work-topic">
+                <h3 class="work-topic-title">{{ topic.title }}</h3>
+                <p class="work-topic-description">{{ topic.description }}</p>
+                <ProjectGrid :items="topic.items" />
+            </div>
         </section>
 
         <section id="about" class="home-about">
@@ -242,6 +246,7 @@ const heroTags = ['Human–AI Creativity', 'Everyday Tools', 'Playful Interactio
 
 const sections = [
   { id: 'work', label: 'Work' },
+  ...topics.map((topic) => ({ id: topic.id, label: topic.title, sub: true })),
   { id: 'about', label: 'About' }
 ];
 

@@ -119,7 +119,7 @@ const research = [
         projects: [
             { label: 'interTabs', href: '/projects/intertabs' },
             { label: 'Palette U', href: '/projects/paletteu' },
-            { label: 'Cosma Sense', href: 'https://cosmasense.tech/' }
+            { label: 'Cosma Sense', href: '/projects/cosmasense' }
         ]
     },
     {

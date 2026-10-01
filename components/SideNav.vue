@@ -1,7 +1,7 @@
 <template>
 <nav class="side-nav" :aria-label="label">
     <a v-for="link in links" :key="link.id" :href="`#${link.id}`"
-       :class="{ 'is-active': link.id === activeId }"
+       :class="{ 'is-active': link.id === activeId, 'is-sub': link.sub }"
        :aria-current="link.id === activeId ? 'true' : null"
        @click="goTo($event, link.id)">{{ link.label }}</a>
 </nav>
@@ -14,7 +14,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 // CSS (.page-side); this only highlights the section being read and scrolls to
 // a section on click, landing it below the sticky header.
 const props = defineProps({
-    links: { type: Array, required: true }, // [{ id, label }], in page order
+    links: { type: Array, required: true }, // [{ id, label, sub? }], in page order; sub links indent under the link above
     label: { type: String, default: 'On this page' }
 });
 

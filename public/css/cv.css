@@ -65,10 +65,6 @@
     color: var(--color-accent);
 }
 
-.cv-actions {
-    margin-top: 28px;
-}
-
 /* ---------- Sections and entries ---------- */
 
 .cv-section h2 {
@@ -182,8 +178,7 @@
 @media print {
     .site-header,
     footer,
-    .page-side,
-    .cv-actions {
+    .page-side {
         display: none !important;
     }
 

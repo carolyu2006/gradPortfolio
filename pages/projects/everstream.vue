@@ -123,11 +123,6 @@
                 <figcaption>Winter.</figcaption>
             </figure>
         </section>
-
-        <section class="next-project-section">
-            <h2>More projects</h2>
-            <ProjectGrid :items="pickProjects('/projects/wechatchannels', '/projects/ai-brand-kit')" />
-        </section>
     </article>
 </main>
 <AppFooter />

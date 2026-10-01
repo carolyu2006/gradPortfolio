@@ -63,7 +63,7 @@
     --padding-1024: 80px;
     --padding-full: 160px;
 
-    --header-height: 88px;
+    --header-height: 80px;
     --side-width: 240px;
     --page-gap: 64px;
 }
@@ -138,9 +138,11 @@ h1 {
 }
 
 h2 {
+    /* Archivo Black has a single weight; 400 stops the browser faking a bold. */
+    font-family: 'ArchivoBlack', var(--font-sans);
     font-size: 32px;
     line-height: 1.1;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: -0.01em;
     margin: 0 0 16px;
     color: var(--color-foreground);
@@ -249,8 +251,10 @@ button:focus-visible {
     align-items: center;
     justify-content: space-between;
     gap: 32px;
+    box-sizing: border-box;
     height: var(--header-height);
-    padding: 0 var(--margin-x);
+    /* A little more room above the logo and links than below. */
+    padding: 8px var(--margin-x) 0;
 }
 
 /* The logo: the pixel mark, then the name set as a small stacked block with
@@ -342,6 +346,64 @@ button:focus-visible {
 .site-nav-contact .menu-dropdown {
     top: -20px;
     right: -36px;
+}
+
+/* Overlay: on project pages the header sits over the hero image with no
+   background or rule and light type (a soft shade behind it keeps that type
+   readable on bright covers). Scrolling brings the white bar back. */
+.site-header.is-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    transition: background-color .3s ease, border-color .3s ease;
+}
+
+.site-header.is-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(rgb(0 0 0 / .35), rgb(0 0 0 / 0));
+    pointer-events: none;
+    transition: opacity .3s ease;
+}
+
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) {
+    background-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.site-header.is-overlay.is-scrolled::before,
+.site-header.is-overlay.is-menu-open::before {
+    opacity: 0;
+}
+
+.site-header.is-overlay .site-logo img,
+.site-header.is-overlay .site-logo-text,
+.site-header.is-overlay .site-logo-section,
+.site-header.is-overlay .site-nav > a,
+.site-header.is-overlay .site-menu-toggle {
+    transition: color .3s ease, filter .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-logo img {
+    filter: brightness(0) invert(1);
+}
+
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-logo-text,
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-nav > a {
+    color: #fff;
+}
+
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-logo-section,
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-nav > a:not(.is-active):not(:hover) {
+    color: rgb(255 255 255 / .7);
+}
+
+.site-header.is-overlay:not(.is-scrolled):not(.is-menu-open) .site-menu-toggle {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
 }
 
 @media (max-width: 768px) {
@@ -831,6 +893,12 @@ button:focus-visible {
     line-height: 1.25;
     color: var(--color-foreground);
     transition: color .15s ease;
+}
+
+.side-nav a.is-sub {
+    margin-left: 14px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .side-nav a:hover,
@@ -1353,35 +1421,91 @@ footer h2 {
     display: block;
     width: 100%;
     height: auto;
-    transition: transform .4s ease;
 }
 
-.project-card:hover .project-card-media img,
-.project-card:hover .project-card-media video {
-    transform: scale(1.02);
+/* The question and the description share one cell; hovering swipes the
+   question up and out while the description swipes up into its place. */
+.project-card-text {
+    display: grid;
+    overflow: hidden;
+}
+
+.project-card-title,
+.project-card-description {
+    grid-area: 1 / 1;
+    transition: transform .4s cubic-bezier(.65, 0, .35, 1), opacity .4s ease, color .15s ease;
 }
 
 .project-card-title {
-    margin: 0 0 6px;
+    margin: 0;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.25;
-    transition: color .15s ease;
 }
 
 .project-card:hover .project-card-title,
 .project-card:focus-visible .project-card-title {
-    color: var(--color-accent);
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.project-card-name {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-gray);
 }
 
 .project-card-description {
-    color: var(--color-gray);
+    margin: 0;
+    color: var(--color-accent);
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.project-card:hover .project-card-description,
+.project-card:focus-visible .project-card-description {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 @media (max-width: 720px) {
     .project-grid {
         grid-template-columns: 1fr;
         gap: 48px;
+    }
+}
+
+/* Home page: each research topic is a small title with a larger statement
+   under it, then its grid. */
+.work-topic {
+    margin-top: 56px;
+    scroll-margin-top: 120px;
+}
+
+.work-topic + .work-topic {
+    margin-top: 140px;
+}
+
+.work-topic-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.work-topic-description {
+    margin: 0 0 32px;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-foreground);
+}
+
+@media (max-width: 768px) {
+    .work-topic-description {
+        font-size: 22px;
     }
 }
 

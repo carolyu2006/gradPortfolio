@@ -8,8 +8,11 @@
                    autoplay muted loop playsinline preload="metadata"></video>
             <img v-else :src="project.image" :alt="`${project.title} project cover`" loading="lazy">
         </div>
-        <h3 class="project-card-title">{{ project.title }}</h3>
-        <p class="project-card-description">{{ project.description }}</p>
+        <p class="project-card-name">{{ project.title }}</p>
+        <div class="project-card-text">
+            <h3 class="project-card-title">{{ project.question || project.title }}</h3>
+            <p class="project-card-description" aria-hidden="true">{{ project.description }}</p>
+        </div>
     </a>
 </div>
 </template>

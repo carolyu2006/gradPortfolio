@@ -85,11 +85,6 @@
             <p>Leading this project and conteibuting from every parts, from concept, design, development, user testing,
                 and marketing. I strongly connected to each part, and noticed how </p>
         </section> -->
-
-        <section class="next-project-section">
-            <h2>More projects</h2>
-            <ProjectGrid :items="pickProjects('/projects/ai-brand-kit', '/projects/aigc-video-automation')" />
-        </section>
     </article>
 </main>
 <AppFooter />

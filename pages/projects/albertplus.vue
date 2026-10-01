@@ -223,11 +223,6 @@
             <p>The value wasn't adding features — it was reordering the sequence. Search, options, and schedule visible
                 together and in sync make decisions faster and far less stressful.</p>
         </section>
-
-        <section class="next-project-section">
-            <h2>More projects</h2>
-            <ProjectGrid :items="pickProjects('/projects/aigc-video-automation', '/projects/wechatchannels')" />
-        </section>
     </article>
 </main>
 <AppFooter />

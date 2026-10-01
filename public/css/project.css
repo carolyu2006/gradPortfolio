@@ -166,6 +166,30 @@
     line-height: 1.4;
 }
 
+/* The page's research question, set just under the facts. */
+.statement-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-gray);
+}
+
+/* Open questions: numbered, a little larger than body text. */
+.project-page .content ol.open-questions li {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+/* Cited work at the end of a case study. */
+.project-page .content ol.references li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-gray);
+}
+
 /* What people said: interview quotes and user feedback. */
 .project-page blockquote {
     margin: 28px 0;
